@@ -1,9 +1,6 @@
+import { formatDateToBR } from "../../utils/formatDateToBR";
 import { ContentColumn, ContentRow, Table, TitleColumn, TitleRow } from "./styles";
 import { IInvestmentTableProps } from "./types";
-
-function formatDate(date: Date): string {
-  return new Intl.DateTimeFormat("pt-BR").format(date);
-}
 
 export function InvestmentTable({ investments, onEdit, onDelete }: IInvestmentTableProps) {
   return (
@@ -23,7 +20,7 @@ export function InvestmentTable({ investments, onEdit, onDelete }: IInvestmentTa
             <ContentColumn>{investment.name}</ContentColumn>
             <ContentColumn>{investment.type}</ContentColumn>
             <ContentColumn>R$ {investment.valueInvested.toFixed(2)}</ContentColumn>
-            <ContentColumn>{formatDate(investment.dateOfInvestment)}</ContentColumn>
+            <ContentColumn>{formatDateToBR(investment.dateOfInvestment)}</ContentColumn>
             <ContentColumn>
               <button onClick={() => onEdit(investment.id)}>✏️</button>
               <button onClick={() => onDelete(investment.id)}>🗑️</button>

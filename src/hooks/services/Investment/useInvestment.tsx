@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { IInvestment } from "../../../models/IInvestment";
+import { useCallback, useState } from "react";
+import { IInvestment, InvestmentType } from "../../../models/IInvestment";
 import GetAllInvestments from "../../../services/Investment/get-all-investments";
 import GetInvestmentById from "../../../services/Investment/get-investment-by-id";
 import CreateInvestment from "../../../services/Investment/create-investment";
@@ -10,19 +10,26 @@ export const useInvestment = () => {
   const [investments, setInvestments] = useState<IInvestment[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const getAllInvestments = async () => {
+  const getAllInvestments = useCallback(async () => {
     setLoading(true);
     const service = new GetAllInvestments();
     try {
       const response = await service.loadAll();
-      setInvestments(response);
+      setInvestments(response.map(item => ({
+        id: item?.id ?? 0,
+        name: item?.name ?? '',
+        dateOfInvestment: item?.dateOfInvestment ?? '',
+        valueInvested: item?.valueInvested ?? 0,
+        type: item?.type ?? InvestmentType.EMPTY,
+      })));
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
+     
       alert("Erro ao buscar investimentos");
     } finally {
       setLoading(false);
     }
-  };
+  }, []) ;
 
   const getInvestmentById = async (id: number) => {
     setLoading(true);

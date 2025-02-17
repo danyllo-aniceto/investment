@@ -2,11 +2,13 @@ import { useEffect } from "react";
 import { BaseLayout } from "../../components/BaseLayout";
 import { InvestmentTable } from "../../components/InvestmentTable";
 import { useInvestment } from "../../hooks/services/Investment/useInvestment"; 
+import { Loading } from "../../components/Loading";
 
 export function Home() {
   const {
     investments, 
     loading, 
+
     deleteInvestment,
     updateInvestment,
     getAllInvestments
@@ -15,6 +17,8 @@ export function Home() {
   useEffect(() => {
     getAllInvestments();
   }, [getAllInvestments]);
+
+  console.log('re-render')
 
   const handleEdit = (id: number) => {
     const investmentToEdit = investments.find((investment) => investment.id === id);
@@ -33,12 +37,16 @@ export function Home() {
   };
 
   if (loading) {
-    return <div>Carregando investimentos...</div>;
+    return <Loading message="Carregando Investimentos" />;
   }
+
+ 
+
 
   return (
     <BaseLayout>
       <h2>Tela Home</h2>
+      
       <InvestmentTable
         investments={investments} 
         onDelete={handleDelete} 
