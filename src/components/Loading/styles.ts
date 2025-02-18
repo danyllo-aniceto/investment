@@ -33,7 +33,7 @@ export const Spinner = styled.div`
   width: 50px;
   height: 50px;
   border: 5px solid rgba(24, 24, 100, 0.2);
-  border-top: 5px solid blue;
+  border-top: 5px solid #1a3e5a;
   border-radius: 50%;
   animation: ${spin} 1s linear infinite;
 `;
