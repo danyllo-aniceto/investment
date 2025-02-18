@@ -1,6 +1,8 @@
 import { formatDateToBR } from "../../utils/formatDateToBR";
+import { Button } from "../Button";
 import { ContentColumn, ContentRow, Table, TitleColumn, TitleRow } from "./styles";
 import { IInvestmentTableProps } from "./types";
+import { FiEdit, FiTrash } from "react-icons/fi";
 
 export function InvestmentTable({ investments, onEdit, onDelete }: IInvestmentTableProps) {
   return (
@@ -22,8 +24,13 @@ export function InvestmentTable({ investments, onEdit, onDelete }: IInvestmentTa
             <ContentColumn>R$ {investment.valueInvested.toFixed(2)}</ContentColumn>
             <ContentColumn>{formatDateToBR(investment.dateOfInvestment)}</ContentColumn>
             <ContentColumn>
-              <button onClick={() => onEdit(investment.id)}>✏️</button>
-              <button onClick={() => onDelete(investment.id)}>🗑️</button>
+              <Button variant="icon" onClick={() => onEdit(investment.id)}>
+                  <FiEdit size={20} />
+              </Button>
+
+              <Button variant="icon" onClick={() => onDelete(investment.id)}>
+                   <FiTrash size={20} />
+              </Button>
             </ContentColumn>
           </ContentRow>
         ))}

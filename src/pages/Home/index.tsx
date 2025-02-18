@@ -3,12 +3,15 @@ import { BaseLayout } from "../../components/BaseLayout";
 import { InvestmentTable } from "../../components/InvestmentTable";
 import { useInvestment } from "../../hooks/services/Investment/useInvestment"; 
 import { Loading } from "../../components/Loading";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../../components/Button";
 
 export function Home() {
+
+  const navigate = useNavigate();
   const {
     investments, 
     loading, 
-
     deleteInvestment,
     updateInvestment,
     getAllInvestments
@@ -40,13 +43,13 @@ export function Home() {
     return <Loading message="Carregando Investimentos" />;
   }
 
- 
-
-
   return (
     <BaseLayout>
       <h2>Tela Home</h2>
       
+      <Button variant="secondary" onClick={() => navigate("/new-investment")}>
+      Adicionar Investimento
+      </Button>
       <InvestmentTable
         investments={investments} 
         onDelete={handleDelete} 

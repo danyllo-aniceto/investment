@@ -1,11 +1,18 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Home } from "./pages/Home"
 import { GlobalStyle } from "./styles/global"
+import { NewInvestment } from "./pages/NewInvestiment"
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Home />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/new-investment" element={<NewInvestment />} />
+        </Routes>
+      </BrowserRouter>
     </>
   
   )

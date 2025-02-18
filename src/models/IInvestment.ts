@@ -1,8 +1,8 @@
 export enum InvestmentType {
   EMPTY = '',
-  ACTION = "action",
-  FUND = "fund",
-  TITLE = "title",
+  ACTION = 'ACTION',
+  FUND = "FUND",
+  TITLE = "TITLE",
 }
 
 export interface IInvestmentAPI {
