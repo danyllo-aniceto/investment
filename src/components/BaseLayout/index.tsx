@@ -1,15 +1,20 @@
-import { Contact, Container, Footer, Header, Link, Logo, Main, SocialIcons, TitleLogo } from './styles';
+import { Contact, Container, Footer, Header, LinkSocialMedia, Logo, Main, SocialIcons, TitleLogo } from './styles';
 import { IBaseLayoutProps } from './types';
 import logo from "./../../assets/logo.png"
 import title from "./../../assets/title-logo.png"
 import { FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export function BaseLayout({ children }: IBaseLayoutProps) {
   return (
     <Container>
       <Header>
-        <TitleLogo src={title}/>
-        <Logo src={logo}/>
+        <Link to="/">
+          <TitleLogo src={title} alt="Title Logo" />
+        </Link>
+        <Link to="/">
+          <Logo src={logo} alt="Logo" />
+        </Link> 
       </Header>
       <Main>{children}</Main>
       <Footer>
@@ -17,12 +22,12 @@ export function BaseLayout({ children }: IBaseLayoutProps) {
       <Contact>
       <p>danyllo.aniceto.carvalho@gmail.com</p>
       <SocialIcons>
-        <Link href="https://instagram.com/danylloaniceto" target="_blank" rel="noopener noreferrer">
+        <LinkSocialMedia href="https://instagram.com/danylloaniceto" target="_blank" rel="noopener noreferrer">
           <FaInstagram />
-        </Link>
-        <Link href="https://www.linkedin.com/in/danyllo-aniceto-564610267/" target="_blank" rel="noopener noreferrer">
+        </LinkSocialMedia>
+        <LinkSocialMedia href="https://www.linkedin.com/in/danyllo-aniceto-564610267/" target="_blank" rel="noopener noreferrer">
           <FaLinkedin />
-        </Link>
+        </LinkSocialMedia>
       </SocialIcons>
       </Contact>
       </Footer>

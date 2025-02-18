@@ -44,7 +44,7 @@ export const SocialIcons = styled.div`
   align-self: flex-end;
 `;
 
-export const Link = styled.a`
+export const LinkSocialMedia = styled.a`
     color: #fff;
     font-size: 1.2rem;
     transition: color 0.3s;
