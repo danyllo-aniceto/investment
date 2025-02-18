@@ -1,6 +1,7 @@
+import { investmentTypeStyles } from "../../models/IInvestment";
 import { formatDateToBR } from "../../utils/formatDateToBR";
 import { Button } from "../Button";
-import { ContentColumn, ContentRow, Table, TitleColumn, TitleRow } from "./styles";
+import { ActionButtons, ContentColumn, ContentRow, Table, TitleColumn, TitleRow } from "./styles";
 import { IInvestmentTableProps } from "./types";
 import { FiEdit, FiTrash } from "react-icons/fi";
 
@@ -20,10 +21,17 @@ export function InvestmentTable({ investments, onEdit, onDelete }: IInvestmentTa
         {investments.map((investment) => (
           <ContentRow key={investment.id}>
             <ContentColumn>{investment.name}</ContentColumn>
-            <ContentColumn>{investment.type}</ContentColumn>
+            <ContentColumn
+                style={{
+                  backgroundColor: investmentTypeStyles[investment.type || "EMPTY"].color
+                }}
+            >
+                {investmentTypeStyles[investment.type || "EMPTY"].label}
+            </ContentColumn>
             <ContentColumn>R$ {investment.valueInvested.toFixed(2)}</ContentColumn>
             <ContentColumn>{formatDateToBR(investment.dateOfInvestment)}</ContentColumn>
             <ContentColumn>
+              <ActionButtons>
               <Button variant="icon" onClick={() => onEdit(investment.id)}>
                   <FiEdit size={20} />
               </Button>
@@ -31,6 +39,7 @@ export function InvestmentTable({ investments, onEdit, onDelete }: IInvestmentTa
               <Button variant="icon" onClick={() => onDelete(investment.id)}>
                    <FiTrash size={20} />
               </Button>
+              </ActionButtons>
             </ContentColumn>
           </ContentRow>
         ))}

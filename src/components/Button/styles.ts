@@ -18,7 +18,7 @@ export const StyledButton = styled.button<{ variant: string }>`
       case "primary":
         return `background: #007bff; color: #fff; &:hover { background: #0056b3; }`;
       case "secondary":
-        return `background: #28a745; color: #fff; &:hover { background: #1e7e34; }`;
+        return `background: #1a3e5a; color: #fff; &:hover { background: #051b2c2b; color: #1a3e5a}`;
       case "danger":
         return `background: #dc3545; color: #fff; &:hover { background: #b02a37; }`;
       case "icon":

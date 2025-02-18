@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Home } from "./pages/Home"
 import { GlobalStyle } from "./styles/global"
-import { NewInvestment } from "./pages/NewInvestiment"
+import { NewInvestment } from "./pages/NewInvestment"
 
 function App() {
   return (

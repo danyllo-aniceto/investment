@@ -7,10 +7,6 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   flex: 1;
   padding: 50px 16px;
   background-color:#93a8b75c
@@ -20,7 +16,7 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #93a8b7;
+  background-color: #b6bdc2;
   padding: 15px;
 `;
 

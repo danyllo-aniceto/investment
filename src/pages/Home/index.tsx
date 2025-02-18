@@ -5,6 +5,7 @@ import { useInvestment } from "../../hooks/services/Investment/useInvestment";
 import { Loading } from "../../components/Loading";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
+import { Container } from "./styles";
 
 export function Home() {
 
@@ -45,16 +46,16 @@ export function Home() {
 
   return (
     <BaseLayout>
-      <h2>Tela Home</h2>
-      
-      <Button variant="secondary" onClick={() => navigate("/new-investment")}>
-      Adicionar Investimento
-      </Button>
-      <InvestmentTable
-        investments={investments} 
-        onDelete={handleDelete} 
-        onEdit={handleEdit} 
-      />
+      <Container>
+        <Button variant="secondary" onClick={() => navigate("/new-investment")}>
+        Adicionar Investimento
+        </Button>
+        <InvestmentTable
+          investments={investments} 
+          onDelete={handleDelete} 
+          onEdit={handleEdit} 
+        />
+        </Container>
     </BaseLayout>
   );
 }

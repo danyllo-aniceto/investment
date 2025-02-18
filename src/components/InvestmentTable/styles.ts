@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Table = styled.table`
+  font-weight: 600;
   width: 100%;
   border-collapse: collapse;
   th, td {
@@ -10,7 +11,7 @@ export const Table = styled.table`
 `;
 
 export const TitleRow = styled.tr`
-  background-color: #E9ECEF;
+  background-color: #b6bdc2;
 `;
 
 export const TitleColumn = styled.th`
@@ -19,8 +20,16 @@ export const TitleColumn = styled.th`
 
 export const ContentRow = styled.tr`
   background-color: #fff;
+ 
 `;
 
 export const ContentColumn = styled.td`
   color: #2C3E50;
+  text-align: center;
+`;
+
+export const ActionButtons = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
