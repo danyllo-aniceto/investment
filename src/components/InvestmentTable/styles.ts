@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Table = styled.table`
   font-weight: 600;
   width: 100%;
   border-collapse: collapse;
-  th, td {
+  th,
+  td {
     padding: 10px;
     border: 1px solid #ddd;
   }
@@ -15,16 +16,15 @@ export const TitleRow = styled.tr`
 `;
 
 export const TitleColumn = styled.th`
-  color: #343A40;
+  color: #343a40;
 `;
 
 export const ContentRow = styled.tr`
   background-color: #fff;
- 
 `;
 
 export const ContentColumn = styled.td`
-  color: #2C3E50;
+  color: #2c3e50;
   text-align: center;
 `;
 

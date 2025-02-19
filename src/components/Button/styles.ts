@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const StyledButton = styled.button<{ variant: string }>`
+export const StyledButton = styled.button<{ $variant: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: ${({ variant }) => (variant === "icon" ? "8px" : "12px 16px")};
+  padding: ${({ $variant }) => ($variant === 'icon' ? '8px' : '12px 16px')};
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
@@ -13,18 +13,18 @@ export const StyledButton = styled.button<{ variant: string }>`
   border: none;
   transition: 0.2s;
 
-  ${({ variant }) => {
-    switch (variant) {
-      case "primary":
+  ${({ $variant }) => {
+    switch ($variant) {
+      case 'primary':
         return `background: #007bff; color: #fff; &:hover { background: #0056b3; }`;
-      case "secondary":
+      case 'secondary':
         return `background: #1a3e5a; color: #fff; &:hover { background: #051b2c2b; color: #1a3e5a}`;
-      case "danger":
+      case 'danger':
         return `background: #dc3545; color: #fff; &:hover { background: #dc35458f; color: #dc3545}`;
-      case "icon":
+      case 'icon':
         return `background: transparent; color: inherit; padding: 8px; &:hover { opacity: 0.7; }`;
       default:
-        return "";
+        return '';
     }
   }}
 `;

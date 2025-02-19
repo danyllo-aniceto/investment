@@ -1,7 +1,7 @@
-import { Container, Message, Overlay, Spinner } from "./styles";
-import { ILoadingProps } from "./types";
+import { Container, Message, Overlay, Spinner } from './styles';
+import { ILoadingProps } from './types';
 
-export function Loading({ message = "Carregando..." }: ILoadingProps) {
+export function Loading({ message = 'Carregando...' }: ILoadingProps) {
   return (
     <Overlay>
       <Container>

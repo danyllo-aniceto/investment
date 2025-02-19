@@ -1,18 +1,16 @@
-import { FiX } from "react-icons/fi";
-import { IModalProps } from "./types";
-import { CloseButton, Content, Footer, Header, ModalContainer, Overlay } from "./styles";
-import { Button } from "../Button";
-
-
+import { FiX } from 'react-icons/fi';
+import { IModalProps } from './types';
+import { CloseButton, Content, Footer, Header, ModalContainer, Overlay } from './styles';
+import { Button } from '../Button';
 
 export function Modal({
   isOpen,
   onClose,
   onConfirm,
-  title = "Confirmação",
+  title = 'Confirmação',
   children,
-  confirmText = "Confirmar",
-  cancelText = "Cancelar",
+  confirmText = 'Confirmar',
+  cancelText = 'Cancelar',
 }: IModalProps) {
   if (!isOpen) return null;
 
@@ -40,4 +38,3 @@ export function Modal({
     </Overlay>
   );
 }
-

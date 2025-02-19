@@ -1,6 +1,6 @@
-import { IInvestment } from "../../models/IInvestment";
+import { IInvestment } from '../../models/IInvestment';
 
 export interface IInvestmentFormProps {
-  initialData?: IInvestment; 
-  onSubmit: (data: IInvestment) => void; 
+  initialData?: IInvestment;
+  onSubmit: (data: IInvestment) => void;
 }

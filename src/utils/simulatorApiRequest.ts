@@ -2,10 +2,10 @@ export function simulatorApiRequest<T>(data: T, simulatorError: boolean = false)
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (simulatorError) {
-        reject(new Error('Erro simulado'))
+        reject(new Error('Erro simulado'));
       }
 
-      resolve(data)
-    }, 2000)
-  })
+      resolve(data);
+    }, 2000);
+  });
 }

@@ -1,6 +1,6 @@
 export function formatDateToBR(dateString: string | null | undefined): string {
-  if (!dateString) return '-'
-  
+  if (!dateString) return '-';
+
   const date = new Date(dateString);
 
   const day = String(date.getDate()).padStart(2, '0');

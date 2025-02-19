@@ -9,7 +9,7 @@ export const Container = styled.div`
 export const Main = styled.main`
   flex: 1;
   padding: 50px 16px;
-  background-color:#93a8b75c
+  background-color: #93a8b75c;
 `;
 
 export const Header = styled.header`
@@ -45,18 +45,18 @@ export const SocialIcons = styled.div`
 `;
 
 export const LinkSocialMedia = styled.a`
-    color: #fff;
-    font-size: 1.2rem;
-    transition: color 0.3s;
+  color: #fff;
+  font-size: 1.2rem;
+  transition: color 0.3s;
 
-    :hover{
-      color: #0077b5;
-    }
+  :hover {
+    color: #0077b5;
+  }
 `;
 
 export const Contact = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
 `;

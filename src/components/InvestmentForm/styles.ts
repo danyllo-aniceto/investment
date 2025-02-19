@@ -1,5 +1,5 @@
-import DatePicker from "react-datepicker";
-import styled from "styled-components";
+import DatePicker from 'react-datepicker';
+import styled from 'styled-components';
 
 export const Form = styled.form`
   background-color: #fff;
@@ -9,21 +9,21 @@ export const Form = styled.form`
   justify-content: center;
   align-items: flex-start;
   gap: 10px;
-  border-radius: 8px; 
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 `;
 
 export const Label = styled.label`
-  font-size: 14px; 
-  font-weight: bold; 
-  margin-bottom: 4px; 
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 4px;
 `;
 
 export const Input = styled.input`
   padding: 8px;
-  border-radius: 4px; 
-  border: 1px solid #ccc; 
-  width: 100%; 
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
   box-sizing: border-box;
 `;
 
@@ -57,7 +57,7 @@ export const DatePickerStyled = styled(DatePicker)`
 export const ErrorMessage = styled.span`
   color: red;
   font-size: 12px;
-  height: 20px; 
+  height: 20px;
   display: block;
   margin-top: 4px;
 `;
@@ -67,4 +67,4 @@ export const ContainerForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-`
+`;

@@ -1,42 +1,92 @@
-import "react-datepicker/dist/react-datepicker.css";
-import { ContainerInput, DatePickerStyled, Form, Input, Label, Select, ErrorMessage, ContainerForm } from "./styles";
-import { Button } from "../Button";
-import { useState } from "react";
-import { validateValue } from "../../utils/validateValue"; 
+import 'react-datepicker/dist/react-datepicker.css';
+import { useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import DatePicker from 'react-datepicker';
+import { ContainerInput, Form, Input, Label, Select, ErrorMessage, ContainerForm } from './styles';
+import { Button } from '../Button';
+import { validateValue } from '../../utils/validateValue';
+import { IInvestment, InvestmentType, investmentTypeStyles } from '../../models/IInvestment';
 
 export function InvestmentForm() {
-  const [value, setValue] = useState<string>(""); 
-  const [error, setError] = useState<string>(""); 
+  const {
+    register,
+    handleSubmit,
+    control,
+    setValue,
+    formState: { errors },
+  } = useForm<IInvestment>({
+    defaultValues: {
+      name: '',
+      type: InvestmentType.EMPTY,
+      valueInvested: 0,
+      dateOfInvestment: new Date().toISOString(),
+    },
+  });
 
-  const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
+  const [error, setError] = useState<string>('');
 
-    validateValue(newValue, setValue, setError);
+  const onSubmit = (data: IInvestment) => {
+    const newInvestment: IInvestment = {
+      ...data,
+      id: Date.now(),
+      dateOfInvestment: new Date(data.dateOfInvestment).toISOString(),
+    };
+
+    console.log('Investimento salvo:', newInvestment);
   };
 
-  return(
-    <Form>
+  return (
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <ContainerForm>
         <ContainerInput>
           <Label>Nome do Investimento:</Label>
-          <Input />
+          <Input {...register('name', { required: 'Nome é obrigatório' })} />
+          {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
         </ContainerInput>
+
         <ContainerInput>
           <Label>Tipo:</Label>
-          <Select></Select>
+          <Select {...register('type', { required: 'Selecione um tipo' })}>
+            <option value={InvestmentType.EMPTY} disabled>
+              Selecione o tipo de investimento
+            </option>
+            <option value={InvestmentType.ACTION}>{investmentTypeStyles.ACTION.label}</option>
+            <option value={InvestmentType.FUND}>{investmentTypeStyles.FUND.label}</option>
+            <option value={InvestmentType.TITLE}>{investmentTypeStyles.TITLE.label}</option>
+          </Select>
+          {errors.type && <ErrorMessage>{errors.type.message}</ErrorMessage>}
         </ContainerInput>
+
         <ContainerInput>
           <Label>Valor Investido:</Label>
-          <Input 
+          <Input
             type="text"
-            value={value}
-            onChange={handleValueChange}
+            {...register('valueInvested', { required: 'Valor é obrigatório', valueAsNumber: true })}
+            onChange={e =>
+              validateValue(e.target.value, val => setValue('valueInvested', Number(val)), setError)
+            }
           />
           {error && <ErrorMessage>{error}</ErrorMessage>}
+          {errors.valueInvested && <ErrorMessage>{errors.valueInvested.message}</ErrorMessage>}
         </ContainerInput>
+
         <ContainerInput>
           <Label>Data do Investimento:</Label>
-          <DatePickerStyled />
+          <Controller
+            control={control}
+            name="dateOfInvestment"
+            render={({ field }) => (
+              <DatePicker
+                selected={new Date(field.value)}
+                onChange={date => field.onChange(date?.toISOString())}
+                dateFormat="dd/MM/yyyy"
+                className="custom-datepicker"
+              />
+            )}
+          />
+          {errors.dateOfInvestment && (
+            <ErrorMessage>{errors.dateOfInvestment.message}</ErrorMessage>
+          )}
         </ContainerInput>
 
         <Button type="submit">Salvar Investimento</Button>

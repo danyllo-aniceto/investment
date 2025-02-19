@@ -1,4 +1,4 @@
-import { IInvestment } from "../../models/IInvestment";
+import { IInvestment } from '../../models/IInvestment';
 
 export interface IInvestmentTableProps {
   investments: IInvestment[];

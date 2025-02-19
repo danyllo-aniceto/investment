@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -11,7 +11,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.4); 
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;

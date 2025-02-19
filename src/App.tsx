@@ -1,7 +1,7 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { Home } from "./pages/Home"
-import { GlobalStyle } from "./styles/global"
-import { NewInvestment } from "./pages/NewInvestment"
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Home } from './pages/Home';
+import { GlobalStyle } from './styles/global';
+import { NewInvestment } from './pages/NewInvestment';
 
 function App() {
   return (
@@ -14,8 +14,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </>
-  
-  )
+  );
 }
 
-export default App
+export default App;

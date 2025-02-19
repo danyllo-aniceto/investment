@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -45,5 +45,3 @@ export const Footer = styled.div`
   justify-content: flex-end;
   gap: 10px;
 `;
-
-

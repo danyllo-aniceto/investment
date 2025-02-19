@@ -1,16 +1,16 @@
 export const validateValue = (
-  value: string, 
-  setValue: React.Dispatch<React.SetStateAction<string>>, 
-  setError: React.Dispatch<React.SetStateAction<string>>
+  value: string,
+  setValue: React.Dispatch<React.SetStateAction<string>>,
+  setError: React.Dispatch<React.SetStateAction<string>>,
 ) => {
-  if (/^\d*\.?\d*$/.test(value) && value[0] !== "-") {
+  if (/^\d*\.?\d*$/.test(value) && value[0] !== '-') {
     setValue(value);
-    setError(""); 
+    setError('');
   } else {
-    setError("Por favor, insira um valor válido e não negativo.");
+    setError('Por favor, insira um valor válido e não negativo.');
 
     setTimeout(() => {
-      setError("");
+      setError('');
     }, 3000);
   }
 };

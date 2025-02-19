@@ -1,7 +1,7 @@
 // import { API_URL } from "../../constants/apiUrl";
-import { allInvestmentsMock } from "../../mock/allInvestmentsMock";
-import { IInvestmentAPI } from "../../models/IInvestment";
-import { simulatorApiRequest } from "../../utils/simulatorApiRequest";
+import { allInvestmentsMock } from '../../mock/allInvestmentsMock';
+import { IInvestmentAPI } from '../../models/IInvestment';
+import { simulatorApiRequest } from '../../utils/simulatorApiRequest';
 
 export default class GetAllInvestments {
   // private route = `${API_URL}/investments`;
@@ -13,6 +13,6 @@ export default class GetAllInvestments {
     // return response.json();
 
     const response = await simulatorApiRequest(allInvestmentsMock, false);
-    return response
+    return response;
   }
 }

@@ -1,14 +1,13 @@
-import { useState } from "react";
-import { investmentTypeStyles } from "../../models/IInvestment";
-import { formatDateToBR } from "../../utils/formatDateToBR";
-import { Button } from "../Button";
-import { ActionButtons, ContentColumn, ContentRow, Table, TitleColumn, TitleRow } from "./styles";
-import { IInvestmentTableProps } from "./types";
-import { FiEdit, FiTrash } from "react-icons/fi";
-import { Modal } from "../Modal";
+import { useState } from 'react';
+import { investmentTypeStyles } from '../../models/IInvestment';
+import { formatDateToBR } from '../../utils/formatDateToBR';
+import { Button } from '../Button';
+import { ActionButtons, ContentColumn, ContentRow, Table, TitleColumn, TitleRow } from './styles';
+import { IInvestmentTableProps } from './types';
+import { FiEdit, FiTrash } from 'react-icons/fi';
+import { Modal } from '../Modal';
 
 export function InvestmentTable({ investments, onEdit, onDelete }: IInvestmentTableProps) {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
@@ -36,27 +35,27 @@ export function InvestmentTable({ investments, onEdit, onDelete }: IInvestmentTa
           </TitleRow>
         </thead>
         <tbody>
-          {investments.map((investment) => (
+          {investments.map(investment => (
             <ContentRow key={investment.id}>
               <ContentColumn>{investment.name}</ContentColumn>
               <ContentColumn
-                  style={{
-                    backgroundColor: investmentTypeStyles[investment.type || "EMPTY"].color
-                  }}
+                style={{
+                  backgroundColor: investmentTypeStyles[investment.type || 'EMPTY'].color,
+                }}
               >
-                  {investmentTypeStyles[investment.type || "EMPTY"].label}
+                {investmentTypeStyles[investment.type || 'EMPTY'].label}
               </ContentColumn>
               <ContentColumn>R$ {investment.valueInvested.toFixed(2)}</ContentColumn>
               <ContentColumn>{formatDateToBR(investment.dateOfInvestment)}</ContentColumn>
               <ContentColumn>
                 <ActionButtons>
-                <Button variant="icon" onClick={() => onEdit(investment.id)}>
+                  <Button variant="icon" onClick={() => onEdit(investment.id)}>
                     <FiEdit size={20} />
-                </Button>
+                  </Button>
 
-                <Button variant="icon" onClick={() => handleOpenModal(investment.id)}>
+                  <Button variant="icon" onClick={() => handleOpenModal(investment.id)}>
                     <FiTrash size={20} />
-                </Button>
+                  </Button>
                 </ActionButtons>
               </ContentColumn>
             </ContentRow>
@@ -76,4 +75,3 @@ export function InvestmentTable({ investments, onEdit, onDelete }: IInvestmentTa
     </>
   );
 }
-

@@ -13,7 +13,6 @@ export const mediaQuery = {
   custom: (size: number) => `@media screen and (max-width: ${size}px)`,
 };
 
-
 export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
@@ -49,5 +48,19 @@ export const GlobalStyle = createGlobalStyle`
   [disabled]{
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+
+  .custom-datepicker {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    
+  }
+
+  .custom-datepicker:focus {
+    outline: none;
+    border-color: black;
   }
 `;
