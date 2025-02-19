@@ -5,25 +5,33 @@ import GetInvestmentById from '../../../services/Investment/get-investment-by-id
 import CreateInvestment from '../../../services/Investment/create-investment';
 import UpdateInvestment from '../../../services/Investment/update-investment';
 import DeleteInvestment from '../../../services/Investment/delete-investment';
+import { IBaseApi } from '../../../models/IBaseApi';
+import { IBasePagedApi } from '../../../models/IBasePagedApi';
 
 export const useInvestment = () => {
-  const [investments, setInvestments] = useState<IInvestment[]>([]);
+  const [investments, setInvestments] = useState<IBaseApi<IBasePagedApi<IInvestment>>>();
   const [loading, setLoading] = useState(false);
 
   const getAllInvestments = useCallback(async () => {
     setLoading(true);
     const service = new GetAllInvestments();
+
     try {
       const response = await service.loadAll();
-      setInvestments(
-        response.map(item => ({
-          id: item?.id ?? 0,
-          name: item?.name ?? '',
-          dateOfInvestment: item?.dateOfInvestment ?? '',
-          valueInvested: item?.valueInvested ?? 0,
-          type: item?.type ?? InvestmentType.EMPTY,
-        })),
-      );
+      setInvestments({
+        ...response,
+        data: {
+          pagination: response.data.pagination,
+          data: response.data.data.map(item => ({
+            id: item?.id ?? 0,
+            name: item?.name ?? '',
+            dateOfInvestment: item?.date_of_investment ?? '',
+            type: item?.type ?? InvestmentType.EMPTY,
+            valueInvested: item?.value_invested ?? 0,
+          })),
+        },
+      });
+
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       alert('Erro ao buscar investimentos');

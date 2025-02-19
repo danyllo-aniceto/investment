@@ -16,8 +16,10 @@ export interface IInvestmentAPI {
   id: number | null | undefined;
   name: string | null | undefined;
   type: InvestmentType | null | undefined;
-  valueInvested: number | null | undefined;
-  dateOfInvestment: string | null | undefined;
+  value_invested: number | null | undefined;
+  date_of_investment: string | null | undefined;
+  created_at: string | null | undefined;
+  updated_at: string | null | undefined;
 }
 
 export interface IInvestment {

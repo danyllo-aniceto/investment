@@ -1,15 +1,35 @@
-import { useState } from 'react';
-import { investmentTypeStyles } from '../../models/IInvestment';
-import { formatDateToBR } from '../../utils/formatDateToBR';
-import { Button } from '../Button';
-import { ActionButtons, ContentColumn, ContentRow, Table, TitleColumn, TitleRow } from './styles';
-import { IInvestmentTableProps } from './types';
+import { useEffect, useState } from 'react';
 import { FiEdit, FiTrash } from 'react-icons/fi';
-import { Modal } from '../Modal';
+import { Button } from '../../../../components/Button';
+import { Loading } from '../../../../components/Loading';
+import { Modal } from '../../../../components/Modal';
+import { Pagination } from '../../../../components/Pagination';
+import { useInvestment } from '../../../../hooks/services/Investment/useInvestment';
+import { usePaginationEvents } from '../../../../hooks/usePaginationEvents';
+import { investmentTypeStyles } from '../../../../models/IInvestment';
+import { formatDateToBR } from '../../../../utils/formatDateToBR';
+import { ActionButtons, ContentColumn, ContentRow, Table, TitleColumn, TitleRow } from './styles';
 
-export function InvestmentTable({ investments, onEdit, onDelete }: IInvestmentTableProps) {
+export function InvestmentTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
+
+  const { investments, deleteInvestment, updateInvestment, getAllInvestments } = useInvestment();
+
+  const loading = true;
+
+  const handleEdit = (id: number) => {
+    const investmentToEdit = investments.find(investment => investment.id === id);
+
+    if (investmentToEdit) {
+      console.log('Editar:', investmentToEdit);
+      updateInvestment(investmentToEdit);
+    } else {
+      console.log('Investimento não encontrado.');
+    }
+  };
+
+  const { handlePageChange, page } = usePaginationEvents();
 
   const handleOpenModal = (id: number) => {
     setSelectedId(id);
@@ -18,10 +38,20 @@ export function InvestmentTable({ investments, onEdit, onDelete }: IInvestmentTa
 
   const handleConfirmDelete = () => {
     if (selectedId !== null) {
-      onDelete(selectedId);
+      console.log('Deletar:', selectedId);
+      deleteInvestment(selectedId);
     }
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    getAllInvestments();
+  }, [getAllInvestments]);
+
+  if (loading) {
+    return <Loading quantity={1} width={'100%'} height={'500px'} />;
+  }
+
   return (
     <>
       <Table>
@@ -49,7 +79,7 @@ export function InvestmentTable({ investments, onEdit, onDelete }: IInvestmentTa
               <ContentColumn>{formatDateToBR(investment.dateOfInvestment)}</ContentColumn>
               <ContentColumn>
                 <ActionButtons>
-                  <Button variant="icon" onClick={() => onEdit(investment.id)}>
+                  <Button variant="icon" onClick={() => handleEdit(investment.id)}>
                     <FiEdit size={20} />
                   </Button>
 
@@ -62,6 +92,13 @@ export function InvestmentTable({ investments, onEdit, onDelete }: IInvestmentTa
           ))}
         </tbody>
       </Table>
+      <Pagination
+        page={Number(page)}
+        onPageChange={handlePageChange}
+        totalResults={10}
+        totalPages={4}
+      />
+
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

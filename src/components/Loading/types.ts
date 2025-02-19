@@ -1,3 +1,5 @@
 export interface ILoadingProps {
-  message?: string;
+  width: string;
+  height: string;
+  quantity: number;
 }

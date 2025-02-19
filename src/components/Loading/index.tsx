@@ -1,13 +1,12 @@
-import { Container, Message, Overlay, Spinner } from './styles';
+import { SkeletonElement } from './styles';
 import { ILoadingProps } from './types';
 
-export function Loading({ message = 'Carregando...' }: ILoadingProps) {
+export function Loading({ height, quantity, width }: ILoadingProps) {
   return (
-    <Overlay>
-      <Container>
-        <Spinner />
-        <Message>{message}</Message>
-      </Container>
-    </Overlay>
+    <>
+      {Array.from({ length: quantity }, (_, index) => (
+        <SkeletonElement key={index} $width={width} $height={height} />
+      ))}
+    </>
   );
 }

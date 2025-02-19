@@ -1,45 +1,24 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
-const spin = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-`;
+interface ISkeletonElementStyledProps {
+  $height: string;
+  $width: string;
+}
 
-export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-`;
+export const SkeletonElement = styled.div<ISkeletonElementStyledProps>`
+  width: ${({ $width }) => $width};
+  height: ${({ $height }) => $height};
+  background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  border-radius: 8px;
+  animation: shimmer 2.5s infinite linear;
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-`;
-
-export const Spinner = styled.div`
-  width: 50px;
-  height: 50px;
-  border: 5px solid rgba(24, 24, 100, 0.2);
-  border-top: 5px solid #1a3e5a;
-  border-radius: 50%;
-  animation: ${spin} 1s linear infinite;
-`;
-
-export const Message = styled.span`
-  font-size: 16px;
-  color: #333;
-  font-weight: bold;
+  @keyframes shimmer {
+    from {
+      background-position: -200% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
 `;
