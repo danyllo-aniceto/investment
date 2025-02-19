@@ -22,10 +22,12 @@ export const Header = styled.header`
 
 export const TitleLogo = styled.img`
   width: 180px;
+  height: 80px;
 `;
 
 export const Logo = styled.img`
   width: 100px;
+  height: 80px;
 `;
 
 export const Footer = styled.footer`
@@ -36,12 +38,19 @@ export const Footer = styled.footer`
   background-color: #051b2c;
   color: #fff;
   font-size: 0.9rem;
+
+  @media screen and (max-width: 750px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
 `;
 
 export const SocialIcons = styled.div`
   display: flex;
   gap: 1rem;
-  align-self: flex-end;
+  align-items: center;
 `;
 
 export const LinkSocialMedia = styled.a`
@@ -59,4 +68,11 @@ export const Contact = styled.div`
   flex-direction: row;
   gap: 20px;
   align-items: center;
+
+  @media screen and (max-width: 750px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
 `;

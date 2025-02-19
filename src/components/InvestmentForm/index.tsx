@@ -1,95 +1,71 @@
-import 'react-datepicker/dist/react-datepicker.css';
-import { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import DatePicker from 'react-datepicker';
-import { ContainerInput, Form, Input, Label, Select, ErrorMessage, ContainerForm } from './styles';
+import { Controller, useForm } from 'react-hook-form';
+import { IInvestment } from '../../models/IInvestment';
 import { Button } from '../Button';
-import { validateValue } from '../../utils/validateValue';
-import { IInvestment, InvestmentType, investmentTypeStyles } from '../../models/IInvestment';
+import { CustomDatePicker } from '../Form/CustomDatePicker';
+import { CustomInput } from '../Form/CustomInput';
+import { CustomSelect } from '../Form/CustomSelect';
+import { ContainerForm, Form } from './styles';
+import { defaultValues, optionsTypeInvestment } from './utils/form';
+import { IInvestmentFormProps } from './types';
 
-export function InvestmentForm() {
+export function InvestmentForm({ onSubmit, initialData, loading }: IInvestmentFormProps) {
   const {
     register,
     handleSubmit,
     control,
-    setValue,
     formState: { errors },
+    reset,
   } = useForm<IInvestment>({
-    defaultValues: {
-      name: '',
-      type: InvestmentType.EMPTY,
-      valueInvested: 0,
-      dateOfInvestment: new Date().toISOString(),
-    },
+    defaultValues: initialData ?? defaultValues,
   });
 
-  const [error, setError] = useState<string>('');
-
-  const onSubmit = (data: IInvestment) => {
-    const newInvestment: IInvestment = {
-      ...data,
-      id: Date.now(),
-      dateOfInvestment: new Date(data.dateOfInvestment).toISOString(),
-    };
-
-    console.log('Investimento salvo:', newInvestment);
-  };
+  const isPageEdit = Boolean(initialData);
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit((data) => onSubmit(data, reset))}>
       <ContainerForm>
-        <ContainerInput>
-          <Label>Nome do Investimento:</Label>
-          <Input {...register('name', { required: 'Nome é obrigatório' })} />
-          {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
-        </ContainerInput>
+        <CustomInput
+          label="Nome do investimento:"
+          error={errors.name?.message}
+          {...register('name', { required: 'Nome é obrigatório' })}
+          disabled={loading || isPageEdit}
+        />
 
-        <ContainerInput>
-          <Label>Tipo:</Label>
-          <Select {...register('type', { required: 'Selecione um tipo' })}>
-            <option value={InvestmentType.EMPTY} disabled>
-              Selecione o tipo de investimento
-            </option>
-            <option value={InvestmentType.ACTION}>{investmentTypeStyles.ACTION.label}</option>
-            <option value={InvestmentType.FUND}>{investmentTypeStyles.FUND.label}</option>
-            <option value={InvestmentType.TITLE}>{investmentTypeStyles.TITLE.label}</option>
-          </Select>
-          {errors.type && <ErrorMessage>{errors.type.message}</ErrorMessage>}
-        </ContainerInput>
+        <CustomSelect
+          label="Tipo:"
+          options={optionsTypeInvestment}
+          error={errors.type?.message}
+          {...register('type', { required: 'Selecione um tipo' })}
+          disabled={loading}
+        />
 
-        <ContainerInput>
-          <Label>Valor Investido:</Label>
-          <Input
-            type="text"
-            {...register('valueInvested', { required: 'Valor é obrigatório', valueAsNumber: true })}
-            onChange={e =>
-              validateValue(e.target.value, val => setValue('valueInvested', Number(val)), setError)
-            }
-          />
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-          {errors.valueInvested && <ErrorMessage>{errors.valueInvested.message}</ErrorMessage>}
-        </ContainerInput>
+        <CustomInput
+          label="Valor Investido:"
+          type="number"
+          error={errors.value_invested?.message}
+          {...register('value_invested', {
+            required: 'Valor é obrigatório',
+            valueAsNumber: true,
+            min: { value: 0.01, message: 'O valor deve ser maior que zero' },
+          })}
+          disabled={loading}
+        />
 
-        <ContainerInput>
-          <Label>Data do Investimento:</Label>
-          <Controller
-            control={control}
-            name="dateOfInvestment"
-            render={({ field }) => (
-              <DatePicker
-                selected={new Date(field.value)}
-                onChange={date => field.onChange(date?.toISOString())}
-                dateFormat="dd/MM/yyyy"
-                className="custom-datepicker"
-              />
-            )}
-          />
-          {errors.dateOfInvestment && (
-            <ErrorMessage>{errors.dateOfInvestment.message}</ErrorMessage>
+        <Controller
+          control={control}
+          name="date_of_investment"
+          render={({ field }) => (
+            <CustomDatePicker
+              label="Data do investimento:"
+              error={errors.date_of_investment?.message}
+              {...field}
+            />
           )}
-        </ContainerInput>
-
-        <Button type="submit">Salvar Investimento</Button>
+          disabled={loading}
+        />
+        <Button type="submit" disabled={loading}>
+          {loading ? '...' : 'Salvar Investimento'}
+        </Button>
       </ContainerForm>
     </Form>
   );

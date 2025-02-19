@@ -5,6 +5,7 @@ import { Button } from '../Button';
 
 export function Modal({
   isOpen,
+  isLoading,
   onClose,
   onConfirm,
   title = 'Confirmação',
@@ -19,18 +20,18 @@ export function Modal({
       <ModalContainer>
         <Header>
           <h2>{title}</h2>
-          <CloseButton onClick={onClose}>
+          <CloseButton onClick={isLoading ? undefined : onClose}>
             <FiX size={24} />
           </CloseButton>
         </Header>
         <Content>{children}</Content>
         <Footer>
-          <Button variant="secondary" onClick={onClose}>
+          <Button variant="secondary" onClick={onClose} disabled={isLoading}>
             {cancelText}
           </Button>
           {onConfirm && (
-            <Button variant="danger" onClick={onConfirm}>
-              {confirmText}
+            <Button variant="danger" onClick={onConfirm} disabled={isLoading}>
+              {isLoading ? '...' : confirmText}
             </Button>
           )}
         </Footer>

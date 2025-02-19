@@ -23,10 +23,10 @@ export const ArrowButton = styled.button<IDisabled>`
 export const ArrowIcon = styled.svg<IDisabled>`
   width: 28px;
   height: 28px;
-  color: ${({ $disabled }) => ($disabled ? '#4B5563' : '#E5E7EB')};
+  color: ${({ $disabled }) => ($disabled ? '#E5E7EB' : '#4B5563')};
   transition: color 0.2s;
 
   &:hover {
-    color: ${({ $disabled }) => ($disabled ? '#4B5563' : '#FFFFFF')};
+    color: ${({ $disabled }) => ($disabled ? '#FFFFFF' : '#4B5563')};
   }
 `;

@@ -7,15 +7,14 @@ export function RenderPageNumbers({ page, totalPages, handlePageChange }: IRende
   const endPage = Math.min(totalPages, startPage + pagesToShow - 1);
 
   return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i).map(
-    pageNumber => (
+    (pageNumber) => (
       <PageButton
         key={pageNumber}
         onClick={() => handlePageChange(pageNumber)}
         $isActive={pageNumber === page}
-        data-testid="render-page-number-button"
       >
         {pageNumber}
       </PageButton>
-    ),
+    )
   );
 }

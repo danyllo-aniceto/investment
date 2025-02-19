@@ -1,4 +1,7 @@
-export function formatDateToBR(dateString: string | null | undefined): string {
+export function formatDateToBR(
+  dateString: string | null | undefined,
+  hasHr: boolean = false
+): string {
   if (!dateString) return '-';
 
   const date = new Date(dateString);
@@ -7,8 +10,12 @@ export function formatDateToBR(dateString: string | null | undefined): string {
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const year = date.getFullYear();
 
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
+  if (hasHr) {
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
 
-  return `${day}/${month}/${year} ${hours}:${minutes}hr`;
+    return `${day}/${month}/${year} ${hours}:${minutes}hr`;
+  }
+
+  return `${day}/${month}/${year}`;
 }

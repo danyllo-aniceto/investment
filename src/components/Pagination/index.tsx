@@ -26,21 +26,13 @@ export function Pagination({
 
   return (
     <PaginationContainer>
-      <ArrowButton
-        onClick={handlePrevious}
-        $disabled={page === 1}
-        data-testid="arrow-left-pagination-button"
-      >
+      <ArrowButton onClick={handlePrevious} $disabled={page === 1}>
         <ArrowIcon as={FaArrowLeft} $disabled={page === 1} />
       </ArrowButton>
 
       <RenderPageNumbers handlePageChange={handlePageChange} page={page} totalPages={totalPages} />
 
-      <ArrowButton
-        onClick={handleNext}
-        $disabled={page === totalPages}
-        data-testid="arrow-right-pagination-button"
-      >
+      <ArrowButton onClick={handleNext} $disabled={page === totalPages}>
         <ArrowIcon as={FaArrowRight} $disabled={page === totalPages} />
       </ArrowButton>
     </PaginationContainer>

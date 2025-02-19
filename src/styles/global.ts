@@ -50,6 +50,11 @@ export const GlobalStyle = createGlobalStyle`
     cursor: not-allowed;
   }
 
+  a {
+    text-decoration: none;
+    color: currentColor;
+  }
+
 
   .custom-datepicker {
     width: 100%;

@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import { Home } from './pages/Home';
+import { Investments } from './pages/Investments';
 import { GlobalStyle } from './styles/global';
 import { NewInvestment } from './pages/NewInvestment';
+import { EditInvestment } from './pages/EditInvestment';
 
 function App() {
   return (
@@ -10,8 +11,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/investments" replace />} />
-          <Route path="/investments" element={<Home />} />
+          <Route path="/investments" element={<Investments />} />
           <Route path="/new-investment" element={<NewInvestment />} />
+          <Route path="/edit-investment/:id" element={<EditInvestment />} />
         </Routes>
       </BrowserRouter>
     </>

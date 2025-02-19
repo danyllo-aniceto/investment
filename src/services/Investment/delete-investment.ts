@@ -1,13 +1,13 @@
+import axios from 'axios';
 import { API_URL } from '../../constants/apiUrl';
+import { IBaseApi } from '../../models/IBaseApi';
 
 export default class DeleteInvestment {
   private route = `${API_URL}/investments`;
 
-  public async delete(id: number): Promise<void> {
-    const response = await fetch(`${this.route}/${id}`, {
-      method: 'DELETE',
-    });
+  public async delete(id: number): Promise<IBaseApi<null>> {
+    const response = await axios.delete<IBaseApi<null>>(`${this.route}/${id}`);
 
-    if (!response.ok) throw new Error('Erro ao excluir investimento');
+    return response.data;
   }
 }

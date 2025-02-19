@@ -28,7 +28,11 @@ export function BaseLayout({ children }: IBaseLayoutProps) {
       </Header>
       <Main>{children}</Main>
       <Footer>
-        <p>&copy; 2024 DAC Investimentos. Todos os direitos reservados.</p>
+        <p>
+          &copy; 2024 DAC Investimentos.
+          <br />
+          Todos os direitos reservados.
+        </p>
         <Contact>
           <p>danyllo.aniceto.carvalho@gmail.com</p>
           <SocialIcons>
