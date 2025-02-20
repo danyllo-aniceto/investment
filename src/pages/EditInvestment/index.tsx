@@ -1,11 +1,11 @@
-import { BiArrowBack } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
-import { BaseLayout } from '../../components/BaseLayout';
-import { InvestmentForm } from '../../components/InvestmentForm';
-import { Loading } from '../../components/Loading';
-import { useEditInvestment } from './hooks/useEditInvestment';
-import { useGetInvestmentById } from './hooks/useGetInvestmentById';
-import { Container } from './styles';
+import { BiArrowBack } from "react-icons/bi";
+import { Link } from "react-router-dom";
+import { BaseLayout } from "../../components/BaseLayout";
+import { InvestmentForm } from "../../components/InvestmentForm";
+import { Loading } from "../../components/Loading";
+import { useEditInvestment } from "./hooks/useEditInvestment";
+import { useGetInvestmentById } from "./hooks/useGetInvestmentById";
+import { Container } from "./styles";
 
 export function EditInvestment() {
   const { data, loading } = useGetInvestmentById();
@@ -13,7 +13,7 @@ export function EditInvestment() {
 
   return (
     <BaseLayout>
-      <Link to={'/investments'}>
+      <Link to={"/investments"}>
         <BiArrowBack size={30} />
       </Link>
       <Container>
